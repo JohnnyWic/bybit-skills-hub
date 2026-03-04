@@ -25,7 +25,7 @@ bybit-skills-hub/
 **Option A — One-command install (recommended):**
 
 ```bash
-npx skills add https://github.com/JohnnyWic/bybit-skills-hub --skill v5
+npx skills add https://github.com/JohnnyWic/bybit-skills-hub --skill bybit-v5
 ```
 
 **Option B — Manual:**
