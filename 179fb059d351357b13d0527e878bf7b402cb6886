@@ -1,0 +1,23 @@
+skills/bybit/v5/SKILL.md
+  bbe0a57587c845fc 530,532-541,580
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.36-bit.9",
+  "base_commit_sha": "179fb059d351357b13d0527e878bf7b402cb6886",
+  "prompts": {
+    "bbe0a57587c845fc": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3c37feb8-ee93-42ae-b673-2a93e914d580",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "johnny.wang <johnny.wang@bybit.com>",
+      "messages": [],
+      "total_additions": 12,
+      "total_deletions": 3,
+      "accepted_lines": 12,
+      "overriden_lines": 0
+    }
+  }
+}
