@@ -1,6 +1,6 @@
-# Bybit V5 Unified Skill
+# Bybit AI Skills
 
-A comprehensive AI agent skill for the Bybit V5 API, covering **spot**, **linear perpetuals**, **inverse contracts**, and **options** trading through a single unified interface.
+Trade Bybit with natural language — covering **spot**, **linear perpetuals**, **inverse contracts**, and **options** through ~145 API endpoints.
 
 ## What is a Skill?
 
