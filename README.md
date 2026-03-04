@@ -6,18 +6,31 @@ A comprehensive AI agent skill for the Bybit V5 API, covering **spot**, **linear
 
 A Skill is a structured markdown file that teaches AI agents (Claude, OpenClaw, etc.) how to interact with external APIs. The agent reads the skill definition and uses it to make authenticated API calls on your behalf via `curl`.
 
-## Files
+## Repository Structure
 
-| File | Purpose |
-|------|---------|
-| `SKILL.md` | Skill definition — endpoints, parameters, authentication, agent behavior rules |
-| `TOOLS.md` | Credential storage — your Bybit API keys (gitignored, create locally) |
+```
+bybit-skills-hub/
+├── README.md
+├── skills/
+│   └── bybit/
+│       └── v5/
+│           └── SKILL.md    ← Skill definition (~145 endpoints)
+└── TOOLS.md                ← Your API keys (local only, gitignored)
+```
 
 ## Quick Start
 
 ### 1. Install the Skill
 
-Copy `SKILL.md` into your AI agent's skill directory, or reference it directly in your prompt.
+**Option A — One-command install (recommended):**
+
+```bash
+npx skills add https://github.com/JohnnyWic/bybit-skills-hub --skill v5
+```
+
+**Option B — Manual:**
+
+Copy `skills/bybit/v5/SKILL.md` into your AI agent's skill directory.
 
 ### 2. Configure Credentials
 
