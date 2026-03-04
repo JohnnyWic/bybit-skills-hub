@@ -1,0 +1,25 @@
+README.md
+  bbe0a57587c845fc 9,11-19,25-31,33
+skills/bybit/v5/SKILL.md
+  bbe0a57587c845fc 1-579
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.36-bit.9",
+  "base_commit_sha": "c1c17e47337a8376d39f96939cdc50cd94c5a25f",
+  "prompts": {
+    "bbe0a57587c845fc": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3c37feb8-ee93-42ae-b673-2a93e914d580",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "johnny.wang <johnny.wang@bybit.com>",
+      "messages": [],
+      "total_additions": 599,
+      "total_deletions": 7,
+      "accepted_lines": 599,
+      "overriden_lines": 0
+    }
+  }
+}
