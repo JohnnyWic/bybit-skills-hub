@@ -527,9 +527,18 @@ Bybit Accounts:
 * uae-trading (Mainnet, UAE)
 ```
 
-### Transactions on Mainnet
+### Mainnet Confirmation Rules
 
-When performing transactions on mainnet (any POST to trading/position endpoints), always confirm with the user before proceeding by asking them to write **"CONFIRM"** to proceed. Testnet does not require confirmation.
+**Not all requests need confirmation.** Only **mainnet write operations** require user to type "CONFIRM":
+
+| Request Type | Example | Confirmation |
+|-------------|---------|-------------|
+| Public GET (no auth) | tickers, orderbook, kline, funding rate | No |
+| Private GET (read-only) | wallet balance, positions, open orders, trade history | No |
+| **Private POST (write, mainnet)** | **place/amend/cancel order, set leverage, transfer, withdraw** | **Yes — require "CONFIRM"** |
+| Private POST (write, testnet) | same as above but on testnet | No |
+
+Rule: **读取随时可查，主网写入需确认，测试网无需确认。**
 
 ---
 
@@ -568,7 +577,7 @@ When user provides new credentials:
 2. **Credentials requested:** Mask secrets (API Key: first 5 + last 4, Secret: last 5 only)
 3. **Listing accounts:** Show names, environment, and region — never keys
 4. **Account selection:** Ask if ambiguous, default to `main`
-5. **Mainnet transactions:** Require user to type "CONFIRM" before executing
+5. **Mainnet confirmation:** Only mainnet POST (write) operations require "CONFIRM". GET requests (public or private) never need confirmation. Testnet never needs confirmation
 6. **New credentials:** Ask for account name, environment (Mainnet/Testnet), region, then store in `TOOLS.md`
 7. **Regional URL:** Auto-select based on account Region field. Testnet always uses `api-testnet.bybit.com`
 8. **Response handling:** Check `retCode` — `0` means success, non-zero is an error. Show `retMsg` on errors
