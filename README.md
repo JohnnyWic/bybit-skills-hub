@@ -30,17 +30,16 @@ npx skills add https://github.com/JohnnyWic/bybit-skills-hub --skill bybit-v5
 
 This copies `SKILL.md` into your project's skill directory automatically.
 
-**Option B — Manual (Claude Desktop, Cursor, any agent):**
+**Option B — Let your AI agent do it:**
 
-1. Download [`SKILL.md`](skills/bybit/v5/SKILL.md) from this repo
-2. Place it where your AI agent reads skill files:
+Send this message to your agent (Claude Code, Cursor, Claude Desktop, etc.):
 
-| Agent | Location |
-|-------|----------|
-| Claude Code | `<project>/.claude/skills/bybit-v5/SKILL.md` |
-| Claude Desktop | Add the file path to your Project Knowledge |
-| Cursor | Add to `.cursor/rules/` or reference in system prompt |
-| Other agents | Any path the agent can read — then tell it to read the file |
+```
+Download the SKILL.md from https://github.com/JohnnyWic/bybit-skills-hub
+and install it as a skill in this project.
+```
+
+The agent will download and place the file in the correct location for you.
 
 ### 2. Configure Credentials
 
