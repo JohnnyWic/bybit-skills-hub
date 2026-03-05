@@ -269,7 +269,6 @@ All Bybit V5 responses follow this structure:
 | Withdrawal Address List | `/v5/asset/withdraw/query-address` | GET | — | coin, chain, addressType, limit, cursor |
 | Available VASPs | `/v5/asset/withdraw/vasp/list` | GET | — | — |
 | Internal Transfer Records (v2) | `/v5/asset/transfer/inter-transfer-list-query` | GET | — | coin, limit |
-| Enable Sub Universal Transfer | `/v5/asset/transfer/save-transfer-sub-member` | POST | subMemberIds | — |
 | Small Balance Coin List | `/v5/asset/covert/small-balance-list` | GET | accountType | fromCoin |
 | Small Balance Quote | `/v5/asset/covert/get-quote` | POST | accountType, fromCoinList, toCoin | — |
 | Small Balance Execute | `/v5/asset/covert/small-balance-execute` | POST | quoteId | — |
@@ -344,7 +343,6 @@ All Bybit V5 responses follow this structure:
 | Voucher Spec | `/v5/broker/award/info` | GET | awardId | — |
 | Distribute Voucher | `/v5/broker/award/distribute-award` | POST | uid, awardId, amount, specCode | — |
 | Voucher Distribution Records | `/v5/broker/award/distribution-record` | GET | — | awardId, startTime, endTime, limit, cursor |
-| Earning Record | `/v5/broker/earning-record` | GET | — | limit, cursor |
 | Get All Rate Limits | `/v5/broker/apilimit/query-all` | GET | — | limit, cursor, uids |
 | Get Rate Limit Cap | `/v5/broker/apilimit/query-cap` | GET | — | — |
 | Set Rate Limit | `/v5/broker/apilimit/set` | POST | list | — |
