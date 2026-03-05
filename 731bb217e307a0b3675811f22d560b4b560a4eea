@@ -1,0 +1,23 @@
+README.md
+  bbe0a57587c845fc 25,31,33,35-43,47,60
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.0.36-bit.9",
+  "base_commit_sha": "731bb217e307a0b3675811f22d560b4b560a4eea",
+  "prompts": {
+    "bbe0a57587c845fc": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3c37feb8-ee93-42ae-b673-2a93e914d580",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "johnny.wang <johnny.wang@bybit.com>",
+      "messages": [],
+      "total_additions": 15,
+      "total_deletions": 5,
+      "accepted_lines": 15,
+      "overriden_lines": 0
+    }
+  }
+}
