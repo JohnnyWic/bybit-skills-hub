@@ -159,7 +159,14 @@ All Bybit V5 responses follow this structure:
 | Risk Limit | `/v5/market/risk-limit` | GET | category | symbol | linear, inverse |
 | Delivery Price | `/v5/market/delivery-price` | GET | category | symbol, baseCoin, limit, cursor | linear, inverse, option |
 | Long Short Ratio | `/v5/market/account-ratio` | GET | category, symbol, period | limit | linear, inverse |
+| Price Limit | `/v5/market/price-limit` | GET | symbol | category | linear, inverse |
+| Index Price Components | `/v5/market/index-price-components` | GET | indexName | — | — |
+| Fee Group Info | `/v5/market/fee-group-info` | GET | productType | groupId | — |
+| New Delivery Price | `/v5/market/new-delivery-price` | GET | category, baseCoin | settleCoin | linear, inverse, option |
+| ADL Alert | `/v5/market/adlAlert` | GET | — | symbol | linear, inverse |
+| RPI Orderbook | `/v5/market/rpi_orderbook` | GET | symbol, limit | category | spot |
 | Server Time | `/v5/market/time` | GET | — | — | — |
+| System Status | `/v5/system/status` | GET | — | id, state | — |
 | Announcement | `/v5/announcements/index` | GET | — | locale, type, tag, page, limit | — |
 
 ### Trade (Authentication Required)
@@ -176,6 +183,7 @@ All Bybit V5 responses follow this structure:
 | Batch Amend | `/v5/order/amend-batch` | POST | category, request[] | — | per-order | spot, linear, inverse, option |
 | Batch Cancel | `/v5/order/cancel-batch` | POST | category, request[] | — | per-order | spot, linear, inverse, option |
 | Spot Borrow Check | `/v5/order/spot-borrow-check` | GET | category, symbol, side | — | — | spot |
+| Pre-Check Order | `/v5/order/pre-check` | POST | (same as create) | — | — | spot, linear, inverse, option |
 | DCP | `/v5/order/disconnected-cancel-all` | POST | timeWindow | — | — | option |
 
 ### Position (Authentication Required)
@@ -196,6 +204,7 @@ All Bybit V5 responses follow this structure:
 | Get Trade History | `/v5/execution/list` | GET | category | symbol, baseCoin, orderId, orderLinkId, startTime, endTime, execType, limit, cursor | spot, linear, inverse, option |
 | Get Closed PnL | `/v5/position/closed-pnl` | GET | category, symbol | startTime, endTime, limit, cursor | linear, inverse |
 | Get Closed Options | `/v5/position/get-closed-positions` | GET | category | symbol, limit, cursor | option |
+| Confirm Pending MMR | `/v5/position/confirm-pending-mmr` | POST | category, symbol | — | linear, inverse |
 
 ### Account (Authentication Required)
 
@@ -210,10 +219,24 @@ All Bybit V5 responses follow this structure:
 | Coin Greeks | `/v5/asset/coin-greeks` | GET | — | baseCoin |
 | Fee Rate | `/v5/account/fee-rate` | GET | category | symbol, baseCoin |
 | Transaction Log | `/v5/account/transaction-log` | GET | — | accountType, category, currency, baseCoin, type, startTime, endTime, limit, cursor |
+| Contract Transaction Log | `/v5/account/contract-transaction-log` | GET | — | currency, baseCoin, type, startTime, endTime, limit, cursor |
 | Set Margin Mode | `/v5/account/set-margin-mode` | POST | setMarginMode | — |
 | Set MMP | `/v5/account/mmp-modify` | POST | baseCoin, window, frozenPeriod, qtyLimit, deltaLimit | — |
 | Reset MMP | `/v5/account/mmp-reset` | POST | baseCoin | — |
 | Get MMP State | `/v5/account/mmp-state` | GET | baseCoin | — |
+| Account Instruments Info | `/v5/account/instruments-info` | GET | category | symbol, limit, cursor |
+| Get DCP Info | `/v5/account/query-dcp-info` | GET | — | — |
+| Get SMP Group | `/v5/account/smp-group` | GET | — | — |
+| Get Trade Behaviour Config | `/v5/account/user-setting-config` | GET | — | — |
+| Get Transferable Amount | `/v5/account/withdrawal` | GET | coinName | — |
+| Manual Borrow | `/v5/account/borrow` | POST | coin, amount | — |
+| Manual Repay | `/v5/account/repay` | POST | — | coin, amount |
+| No-Convert Repay | `/v5/account/no-convert-repay` | POST | coin | amount |
+| Quick Repayment | `/v5/account/quick-repayment` | POST | — | coin |
+| Batch Set Collateral Coin | `/v5/account/set-collateral-switch-batch` | POST | request[] | — |
+| Set Spot Hedging | `/v5/account/set-hedging-mode` | POST | setHedgingMode | — |
+| Set Price Limit Behaviour | `/v5/account/set-limit-px-action` | POST | category, modifyEnable | — |
+| Request Demo Funds | `/v5/account/demo-apply-money` | POST | — | adjustType, utaDemoApplyMoney |
 
 ### Asset (Authentication Required)
 
@@ -243,6 +266,19 @@ All Bybit V5 responses follow this structure:
 | Withdrawable Amount | `/v5/asset/withdraw/withdrawable-amount` | GET | coin | — |
 | Withdraw | `/v5/asset/withdraw/create` | POST | coin, chain, address, tag, amount, timestamp, forceChain, accountType | — |
 | Cancel Withdrawal | `/v5/asset/withdraw/cancel` | POST | id | — |
+| Withdrawal Address List | `/v5/asset/withdraw/query-address` | GET | — | coin, chain, addressType, limit, cursor |
+| Available VASPs | `/v5/asset/withdraw/vasp/list` | GET | — | — |
+| Internal Transfer Records (v2) | `/v5/asset/transfer/inter-transfer-list-query` | GET | — | coin, limit |
+| Enable Sub Universal Transfer | `/v5/asset/transfer/save-transfer-sub-member` | POST | subMemberIds | — |
+| Small Balance Coin List | `/v5/asset/covert/small-balance-list` | GET | accountType | fromCoin |
+| Small Balance Quote | `/v5/asset/covert/get-quote` | POST | accountType, fromCoinList, toCoin | — |
+| Small Balance Execute | `/v5/asset/covert/small-balance-execute` | POST | quoteId | — |
+| Small Balance History | `/v5/asset/covert/small-balance-history` | GET | — | accountType, quoteId, startTime, endTime, cursor, size |
+| Convert Coin List | `/v5/asset/exchange/query-coin-list` | GET | accountType | coin, side |
+| Convert Request Quote | `/v5/asset/exchange/quote-apply` | POST | accountType, fromCoin, toCoin, requestCoin, requestAmount | fromCoinType, toCoinType |
+| Convert Execute | `/v5/asset/exchange/convert-execute` | POST | quoteTxId | — |
+| Convert Result Query | `/v5/asset/exchange/convert-result-query` | GET | quoteTxId, accountType | — |
+| Convert History | `/v5/asset/exchange/query-convert-history` | GET | — | accountType, index, limit |
 
 ### User (Authentication Required)
 
@@ -259,6 +295,12 @@ All Bybit V5 responses follow this structure:
 | Delete Master API Key | `/v5/user/delete-api` | POST | — | — |
 | Delete Sub API Key | `/v5/user/delete-sub-api` | POST | apikey | — |
 | Get Affiliate User Info | `/v5/user/aff-customer-info` | GET | uid | — |
+| Get Sub UID List (Unlimited) | `/v5/user/submembers` | GET | — | pageSize, nextCursor |
+| Get Sub All API Keys | `/v5/user/sub-apikeys` | GET | subMemberId | limit, cursor |
+| Get Custodial Sub Accts | `/v5/user/escrow_sub_members` | GET | — | pageSize, nextCursor |
+| Delete Sub UID | `/v5/user/del-submember` | POST | subMemberId | — |
+| Create Demo Account | `/v5/user/create-demo-member` | POST | — | — |
+| Get Affiliate User List | `/v5/affiliate/aff-user-list` | GET | — | size, cursor, need365, need30, needDeposit, startDate, endDate |
 
 ### Spot Margin — Unified Account (Authentication Required)
 
@@ -274,6 +316,13 @@ All Bybit V5 responses follow this structure:
 | Borrow | `/v5/spot-cross-margin-trade/loan` | POST | coin, qty | — |
 | Repay | `/v5/spot-cross-margin-trade/repay` | POST | coin, qty | — |
 | Cross Margin Switch | `/v5/spot-cross-margin-trade/switch` | POST | switch | — |
+| Coin State | `/v5/spot-margin-trade/coinstate` | GET | — | currency |
+| Tiered Collateral Ratio | `/v5/spot-margin-trade/collateral` | GET | — | currency |
+| Get Auto Repay Mode | `/v5/spot-margin-trade/get-auto-repay-mode` | GET | — | — |
+| Set Auto Repay Mode | `/v5/spot-margin-trade/set-auto-repay-mode` | POST | — | — |
+| Max Borrowable | `/v5/spot-margin-trade/max-borrowable` | GET | — | coin |
+| Position Tiers | `/v5/spot-margin-trade/position-tiers` | GET | — | — |
+| Repayment Available Amount | `/v5/spot-margin-trade/repayment-available-amount` | GET | — | — |
 
 ### Leverage Token (Authentication for Purchase/Redeem)
 
@@ -295,6 +344,10 @@ All Bybit V5 responses follow this structure:
 | Voucher Spec | `/v5/broker/award/info` | GET | awardId | — |
 | Distribute Voucher | `/v5/broker/award/distribute-award` | POST | uid, awardId, amount, specCode | — |
 | Voucher Distribution Records | `/v5/broker/award/distribution-record` | GET | — | awardId, startTime, endTime, limit, cursor |
+| Earning Record | `/v5/broker/earning-record` | GET | — | limit, cursor |
+| Get All Rate Limits | `/v5/broker/apilimit/query-all` | GET | — | limit, cursor, uids |
+| Get Rate Limit Cap | `/v5/broker/apilimit/query-cap` | GET | — | — |
+| Set Rate Limit | `/v5/broker/apilimit/set` | POST | list | — |
 
 ### Earn (Authentication Required)
 
@@ -305,6 +358,11 @@ All Bybit V5 responses follow this structure:
 | Staked Position | `/v5/earn/position` | GET | — | productId, coin, category |
 | Order History | `/v5/earn/order-history` | GET | — | productId, orderId, startTime, endTime, limit, cursor |
 | Yield History | `/v5/earn/yield-history` | GET | — | productId, coin, startTime, endTime, limit, cursor |
+| Get Product (v2) | `/v5/earn/product` | GET | category | coin |
+| Place Order (v2) | `/v5/earn/place-order` | POST | category, coin, amount | orderLinkId |
+| Get Order (v2) | `/v5/earn/order` | GET | category | orderId, orderLinkId, productId, startTime, endTime, limit, cursor |
+| Get Yield (v2) | `/v5/earn/yield` | GET | category | productId, startTime, endTime, limit, cursor |
+| Hourly Yield | `/v5/earn/hourly-yield` | GET | category | productId, startTime, endTime, limit, cursor |
 
 ### Crypto Loan
 
@@ -320,6 +378,60 @@ All Bybit V5 responses follow this structure:
 | Fixed Repay | `/v5/crypto-loan/fixed/repay` | POST | orderId, amount | — | Yes |
 | Max Loan Amount | `/v5/crypto-loan/max-loan-amount` | GET | loanCoin, collateralCoin | collateralAmount, loanAmount | Yes |
 | LTV Adjust History | `/v5/crypto-loan/ltv-adjust-history` | GET | — | orderId, startTime, endTime, limit, cursor | Yes |
+| Borrow (v2) | `/v5/crypto-loan/borrow` | POST | loanCoin, collateralCoin, loanAmount | — | Yes |
+| Repay (v2) | `/v5/crypto-loan/repay` | POST | orderId, repayAmount | — | Yes |
+| Adjust LTV (v2) | `/v5/crypto-loan/adjust-ltv` | POST | currency, amount, direction | — | Yes |
+| Get Ongoing Orders (v2) | `/v5/crypto-loan/ongoing-orders` | GET | — | orderId, limit, cursor | Yes |
+| Borrow History (v2) | `/v5/crypto-loan/borrow-history` | GET | — | currency, limit, cursor | Yes |
+| Repayment History (v2) | `/v5/crypto-loan/repayment-history` | GET | — | orderId, limit, cursor | Yes |
+| Adjustment History (v2) | `/v5/crypto-loan/adjustment-history` | GET | — | currency, limit, cursor | Yes |
+| Loanable Data (v2) | `/v5/crypto-loan/loanable-data` | GET | — | — | No |
+| Collateral Data (v2) | `/v5/crypto-loan/collateral-data` | GET | — | — | No |
+| Max Collateral Amount (v2) | `/v5/crypto-loan/max-collateral-amount` | GET | currency | — | Yes |
+| Borrowable & Collateralizable Num | `/v5/crypto-loan/borrowable-collateralisable-number` | GET | — | — | Yes |
+
+### Crypto Loan — Common (Authentication Required)
+
+| Endpoint | Path | Method | Required | Optional |
+|----------|------|--------|----------|----------|
+| Get Position | `/v5/crypto-loan-common/position` | GET | — | — |
+| Get Collateral Data | `/v5/crypto-loan-common/collateral-data` | GET | — | — |
+| Get Loanable Data | `/v5/crypto-loan-common/loanable-data` | GET | — | — |
+| Get Max Collateral Amount | `/v5/crypto-loan-common/max-collateral-amount` | GET | currency | — |
+| Get Max Loan | `/v5/crypto-loan-common/max-loan` | GET | currency | — |
+| Adjust LTV | `/v5/crypto-loan-common/adjust-ltv` | POST | currency, amount, direction | — |
+| Adjustment History | `/v5/crypto-loan-common/adjustment-history` | GET | — | currency, limit, cursor |
+
+### Crypto Loan — Fixed Term (Authentication Required)
+
+| Endpoint | Path | Method | Required | Optional |
+|----------|------|--------|----------|----------|
+| Borrow Contract Info | `/v5/crypto-loan-fixed/borrow-contract-info` | GET | orderCurrency | — |
+| Borrow Order Quote | `/v5/crypto-loan-fixed/borrow-order-quote` | GET | orderCurrency | orderBy |
+| Borrow | `/v5/crypto-loan-fixed/borrow` | POST | orderCurrency, loanAmount, collateralCoin, termId | — |
+| Borrow Order Info | `/v5/crypto-loan-fixed/borrow-order-info` | GET | — | orderId |
+| Cancel Borrow Order | `/v5/crypto-loan-fixed/borrow-order-cancel` | POST | orderId | — |
+| Fully Repay | `/v5/crypto-loan-fixed/fully-repay` | POST | orderId | — |
+| Repay Collateral | `/v5/crypto-loan-fixed/repay-collateral` | POST | orderId | — |
+| Repayment History | `/v5/crypto-loan-fixed/repayment-history` | GET | — | repayId |
+| Renew Info | `/v5/crypto-loan-fixed/renew-info` | GET | orderId | — |
+| Renew | `/v5/crypto-loan-fixed/renew` | POST | orderId | — |
+| Supply Contract Info | `/v5/crypto-loan-fixed/supply-contract-info` | GET | supplyCurrency | — |
+| Supply Order Quote | `/v5/crypto-loan-fixed/supply-order-quote` | GET | orderCurrency | orderBy |
+| Supply | `/v5/crypto-loan-fixed/supply` | POST | supplyCurrency, supplyAmount, termId | — |
+| Supply Order Info | `/v5/crypto-loan-fixed/supply-order-info` | GET | — | orderId |
+| Cancel Supply Order | `/v5/crypto-loan-fixed/supply-order-cancel` | POST | orderId | — |
+
+### Crypto Loan — Flexible (Authentication Required)
+
+| Endpoint | Path | Method | Required | Optional |
+|----------|------|--------|----------|----------|
+| Borrow | `/v5/crypto-loan-flexible/borrow` | POST | loanCoin, loanAmount | — |
+| Repay | `/v5/crypto-loan-flexible/repay` | POST | loanCoin, repayAmount | — |
+| Repay Collateral | `/v5/crypto-loan-flexible/repay-collateral` | POST | orderId | — |
+| Ongoing Coins | `/v5/crypto-loan-flexible/ongoing-coin` | GET | — | loanCurrency |
+| Borrow History | `/v5/crypto-loan-flexible/borrow-history` | GET | — | limit |
+| Repayment History | `/v5/crypto-loan-flexible/repayment-history` | GET | — | loanCurrency |
 
 ### Institutional Loan (Authentication Required)
 
@@ -330,6 +442,10 @@ All Bybit V5 responses follow this structure:
 | Loan Orders | `/v5/ins-loan/loan-order` | GET | — | orderId, startTime, endTime, limit |
 | Repay History | `/v5/ins-loan/repaid-history` | GET | — | startTime, endTime, limit |
 | LTV | `/v5/ins-loan/ltv-convert` | GET | — | — |
+| Get Margin Coin Info | `/v5/ins-loan/ensure-tokens` | GET | — | productId |
+| Get LTV | `/v5/ins-loan/ltv` | GET | — | — |
+| Bind/Unbind UID | `/v5/ins-loan/association-uid` | POST | uid, operate | — |
+| Repay Loan | `/v5/ins-loan/repay-loan` | POST | — | — |
 
 ### RFQ — Block Trading (Authentication Required, 50/s)
 
@@ -349,13 +465,55 @@ All Bybit V5 responses follow this structure:
 | Trade List | `/v5/rfq/trade-list` | GET | — | rfqId, startTime, endTime, limit, cursor |
 | Public Trades | `/v5/rfq/public-trades` | GET | — | baseCoin, category, limit |
 | Config | `/v5/rfq/config` | GET | — | — |
+| Accept Non-LP Quote | `/v5/rfq/accept-other-quote` | POST | rfqId | — |
 
 ### Spread Trade (Authentication Required)
 
-| Endpoint | Path | Method | Description |
-|----------|------|--------|-------------|
-| Order Endpoints | `/v5/spread/order/` | POST | Place, amend, cancel, query spread trade orders |
-| Market Endpoints | `/v5/spread/market` | GET | Spread instrument market data |
+| Endpoint | Path | Method | Required | Optional |
+|----------|------|--------|----------|----------|
+| Place Order | `/v5/spread/order/create` | POST | symbol, side, orderType, qty | price, orderLinkId, timeInForce |
+| Amend Order | `/v5/spread/order/amend` | POST | symbol | orderId, orderLinkId, qty, price |
+| Cancel Order | `/v5/spread/order/cancel` | POST | — | orderId, orderLinkId |
+| Cancel All Orders | `/v5/spread/order/cancel-all` | POST | — | symbol, cancelAll |
+| Get Open Orders | `/v5/spread/order/realtime` | GET | — | symbol, baseCoin, orderId, orderLinkId, limit, cursor |
+| Get Order History | `/v5/spread/order/history` | GET | — | symbol, baseCoin, orderId, orderLinkId, startTime, endTime, limit, cursor |
+| Get Trade History | `/v5/spread/execution/list` | GET | — | symbol, orderId, orderLinkId, startTime, endTime, limit, cursor |
+| Get Instruments | `/v5/spread/instrument` | GET | — | symbol, baseCoin, limit, cursor |
+| Get Orderbook | `/v5/spread/orderbook` | GET | symbol, limit | — |
+| Get Tickers | `/v5/spread/tickers` | GET | symbol | — |
+| Get Recent Trades | `/v5/spread/recent-trade` | GET | symbol | limit |
+
+### Fiat (Authentication Required)
+
+| Endpoint | Path | Method | Required | Optional |
+|----------|------|--------|----------|----------|
+| Get Balance | `/v5/fiat/balance-query` | GET | — | currency |
+| Get Trading Pair List | `/v5/fiat/query-coin-list` | GET | — | side |
+| Get Reference Price | `/v5/fiat/reference-price` | GET | symbol | — |
+| Request Quote | `/v5/fiat/quote-apply` | POST | fromCoin, fromCoinType, toCoin, toCoinType, requestAmount | requestCoinType |
+| Execute Trade | `/v5/fiat/trade-execute` | POST | quoteTxId, subUserId | webhookUrl, MerchantRequestId |
+| Get Trade Status | `/v5/fiat/trade-query` | GET | — | tradeNo, merchantRequestId |
+| Get Trade History | `/v5/fiat/trade-query-history` | GET | — | — |
+
+### Lending (Authentication Required)
+
+| Endpoint | Path | Method | Required | Optional |
+|----------|------|--------|----------|----------|
+| Get Lending Coin Info | `/v5/lending/info` | GET | — | coin |
+| Get Lending Account | `/v5/lending/account` | GET | coin | — |
+| Deposit Funds | `/v5/lending/purchase` | POST | coin, quantity | serialNo |
+| Redeem Funds | `/v5/lending/redeem` | POST | coin, quantity | serialNo |
+| Cancel Redeem | `/v5/lending/redeem-cancel` | POST | orderId | — |
+| Get Order History | `/v5/lending/history-order` | GET | — | coin, orderId, startTime, endTime, limit, orderType |
+
+### API Rate Limit (Authentication Required)
+
+| Endpoint | Path | Method | Required | Optional |
+|----------|------|--------|----------|----------|
+| Get Rate Limit | `/v5/apilimit/query` | GET | uids | — |
+| Get All Rate Limits | `/v5/apilimit/query-all` | GET | — | limit, cursor, uids |
+| Get Rate Limit Cap | `/v5/apilimit/query-cap` | GET | — | — |
+| Set Rate Limit | `/v5/apilimit/set` | POST | list | — |
 
 ---
 
