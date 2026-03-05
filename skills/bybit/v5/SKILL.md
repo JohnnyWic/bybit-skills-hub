@@ -1,6 +1,6 @@
 ---
 name: bybit-v5
-description: Bybit AI Skills — trade spot, linear perpetuals, inverse contracts, and options with natural language. Covers ~145 endpoints including market data, order management, position management, account operations, and more. Authentication via HMAC-SHA256 with header-based signing.
+description: Bybit AI Skills — trade spot, linear perpetuals, inverse contracts, and options with natural language. Covers 274 endpoints including market data, order management, position management, account operations, and more. Authentication via HMAC-SHA256 with header-based signing.
 metadata:
   version: 1.0.0
   author: Bybit

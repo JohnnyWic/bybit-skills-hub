@@ -1,6 +1,6 @@
 # Bybit AI Skills
 
-Trade Bybit with natural language — covering **spot**, **linear perpetuals**, **inverse contracts**, and **options** through ~145 API endpoints.
+Trade Bybit with natural language — covering **spot**, **linear perpetuals**, **inverse contracts**, and **options** through 274 API endpoints.
 
 ## What is a Skill?
 
@@ -14,7 +14,7 @@ bybit-skills-hub/
 ├── skills/
 │   └── bybit/
 │       └── v5/
-│           └── SKILL.md    ← Skill definition (~145 endpoints)
+│           └── SKILL.md    ← Skill definition (274 endpoints)
 └── TOOLS.md                ← Your API keys (local only, gitignored)
 ```
 
@@ -69,7 +69,7 @@ Ask the agent:
 > Set 10x leverage on BTCUSDT
 ```
 
-## What Can You Do? (~145 endpoints)
+## What Can You Do? (274 endpoints)
 
 | Capability | Spot | Linear | Inverse | Option |
 |-----------|:----:|:------:|:-------:|:------:|
