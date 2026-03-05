@@ -69,24 +69,28 @@ Ask the agent:
 > Set 10x leverage on BTCUSDT
 ```
 
-## Supported Endpoints (~145)
+## What Can You Do? (~145 endpoints)
 
-| Module | Endpoints | Auth | Description |
-|--------|-----------|------|-------------|
-| Market | 17 | No | Klines, orderbook, tickers, funding rates, instruments info |
-| Trade | 11 | Yes | Place/amend/cancel orders, batch operations, TP/SL on orders |
-| Position | 14 | Yes | Positions, leverage, margin mode, trading stop (TP/SL), PnL |
-| Account | 13 | Yes | Wallet balance, fees, collateral, margin mode, MMP |
-| Asset | 24 | Yes | Transfers, deposits, withdrawals, balances |
-| User | 11 | Yes | Sub accounts, API key management |
-| Spot Margin | 10 | Yes | Margin trading, borrow/repay |
-| Leverage Token | 5 | Mixed | LT info, purchase, redeem |
-| Broker | 6 | Yes | Earnings, vouchers |
-| Earn | 5 | Yes | Staking, yield |
-| Crypto Loan | 10 | Mixed | Flexible/fixed loans, collateral |
-| RFQ | 14 | Yes | Block trading |
-| Spread Trade | 2 | Yes | Spread instruments |
-| Institutional Loan | 5 | Yes | Institutional lending |
+| Capability | Spot | Linear | Inverse | Option |
+|-----------|:----:|:------:|:-------:|:------:|
+| **Market Data** — tickers, orderbook, kline, trades | ✅ | ✅ | ✅ | ✅ |
+| **Funding Rate** — history, current rate | — | ✅ | ✅ | — |
+| **Open Interest** — size & value | — | ✅ | ✅ | — |
+| **Place / Amend / Cancel Order** | ✅ | ✅ | ✅ | ✅ |
+| **Batch Order** — up to 20 per request | ✅ | ✅ | ✅ | ✅ |
+| **TP/SL on Order** — set at order creation | ✅ | ✅ | ✅ | ✅ |
+| **Position Management** — query, leverage, margin mode | — | ✅ | ✅ | ✅ |
+| **TP/SL on Position** — trailing stop, partial TP/SL | — | ✅ | ✅ | — |
+| **Wallet & Account** — balance, fees, transaction log | ✅ | ✅ | ✅ | ✅ |
+| **Asset** — transfer, deposit, withdraw | ✅ | ✅ | ✅ | ✅ |
+| **Spot Margin** — borrow, repay, leverage | ✅ | — | — | — |
+| **Leverage Token** — purchase, redeem | ✅ | — | — | — |
+| **Earn** — stake, redeem, yield | ✅ | — | — | — |
+| **Crypto Loan** — flexible/fixed borrow | ✅ | — | — | — |
+| **RFQ Block Trade** — quote, execute | — | ✅ | ✅ | ✅ |
+| **Broker** — earnings, vouchers | ✅ | ✅ | ✅ | ✅ |
+| **User** — sub accounts, API keys | ✅ | ✅ | ✅ | ✅ |
+| **WebSocket** — orderbook, trades, positions, orders | ✅ | ✅ | ✅ | ✅ |
 
 ## Key Features
 
