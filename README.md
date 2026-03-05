@@ -22,19 +22,29 @@ bybit-skills-hub/
 
 ### 1. Install the Skill
 
-**Option A — One-command install (recommended):**
+**Option A — One-command install:**
 
 ```bash
 npx skills add https://github.com/JohnnyWic/bybit-skills-hub --skill bybit-v5
 ```
 
-**Option B — Manual:**
+This copies `SKILL.md` into your project's skill directory automatically.
 
-Copy `skills/bybit/v5/SKILL.md` into your AI agent's skill directory.
+**Option B — Manual (Claude Desktop, Cursor, any agent):**
+
+1. Download [`SKILL.md`](skills/bybit/v5/SKILL.md) from this repo
+2. Place it where your AI agent reads skill files:
+
+| Agent | Location |
+|-------|----------|
+| Claude Code | `<project>/.claude/skills/bybit-v5/SKILL.md` |
+| Claude Desktop | Add the file path to your Project Knowledge |
+| Cursor | Add to `.cursor/rules/` or reference in system prompt |
+| Other agents | Any path the agent can read — then tell it to read the file |
 
 ### 2. Configure Credentials
 
-Create a `TOOLS.md` file alongside `SKILL.md` with your Bybit API keys:
+Create a `TOOLS.md` file **in the same directory as SKILL.md** with your Bybit API keys:
 
 ```markdown
 ## Bybit Accounts
@@ -47,7 +57,7 @@ Create a `TOOLS.md` file alongside `SKILL.md` with your Bybit API keys:
 - Description: Primary trading account
 ```
 
-Or simply send your credentials to the agent — it will create the `TOOLS.md` for you.
+> **Tip:** You can also just tell the agent your credentials — it will create `TOOLS.md` for you automatically.
 
 ### 3. Start Trading
 
